@@ -1,4 +1,4 @@
-API - Localidades
+# API - Localidades
 
 Projeto criado para realização de um desafio. Disponibiliza três url's de api para extração e consulta de dados referente a estados e municípios. 
 Através das urls publicadas as consultas serão realizadas em api externa publica do IBGE e retornado os dados transformados em Json/CSV. 
@@ -7,7 +7,23 @@ Através das urls publicadas as consultas serão realizadas em api externa publi
 
 O projeto é uma aplicação back-end java com objetivo de demonstrar a construção de uma API utilizando os frameworks [Spring Boot](https://projects.spring.io/spring-boot), [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) e [Spring Web](https://spring.io/projects/spring-ws) em conjunto.
 
-## Tecnologias
+---
+#### Temas
+1 - Tecnologias
+
+2 - Contratos de API
+
+3 - Setup da aplicação (local)
+
+4 - Instalação da aplicação
+
+5 - DockerHub
+
+6 - Instalação da aplicação via build/compilação
+
+---
+
+## 1 - Tecnologias
 
 - [Spring Boot](https://projects.spring.io/spring-boot) é uma ferramenta que simplifica a configuração e execução de aplicações Java stand-alone,  com conceitos de dependências “starters”, auto configuração e servlet container embutidos é proporcionado uma grande produtividade desde o start-up da aplicação até sua ida a produção.
  
@@ -34,7 +50,7 @@ Diagrama de Classes
 
  ---
  
-## Contratos de API
+## 2 - Contratos de API
 
 Este projeto publica 3 urls para consumo e utiliza internamente 2 urls externas para coleta de dados.
 
@@ -127,7 +143,7 @@ Este projeto utiliza duas url's para consulta externa.
 ---
  
  
-# Setup da aplicação (local)
+# 3 - Setup da aplicação (local)
 
 ## Pré-requisito
 
@@ -137,7 +153,7 @@ Java 8
 Maven 3.1.0
 ```
 
-## Instalação da aplicação 
+## 4 - Instalação da aplicação 
 
 Primeiramente, faça o clone do repositório:
 ```
@@ -176,6 +192,64 @@ Localidades : Obtem informações de localidadesShow/HideList OperationsExpand O
  [ base url: / , api version: 1.0.0 ]
 ```
 
+# 5 - DockerHub
+
+[Repositorio DockerHub](https://hub.docker.com/r/antoniny/api-localidades) -> Acesso ao repositório do projeto no DockerHub
+
+
+##### Executar servidor via Docker Client - pull image
+
+Pré-requisito
+```
+Doker Client instalado e em execução
+```
+[Get Docker]((https://docs.docker.com/get-docker/))
+
+Comandos para iniciar o servidor
+```
+##1 - Realiza o download e inicia o servidor em http://localhost:8080/swagger-ui.html
+
+docker run --name api-localidades -it -p 8080:8080 antoniny/api-localidades:latest
+
+##Nota: Caso não deseja a exibição de logs do servidor em seu terminal, execute o comando abaixo ( -d
+docker run --name api-localidades -itd -p 8080:8080 antoniny/api-localidades:latest
+
+##2 - Stop servidor
+
+docker stop api-localidades
+
+##3 - Listar imagens
+
+docker images
+
+##4 - Listar container ativos
+
+docker container ls
+
+##4 - Deletar container / image
+
+ docker rm api-localidades
+ docker rmi -f antoniny/api-localidades
+```
+
+### 6 - Instalação da aplicação via build/compilação
+
+Baixar as dependência e criar imagem da aplicação
+
+Considerando sistema operacional windows com docker cli instalado.
+
+Nota 1: Docker Cli deve estar ativo (Container Linux) 
+
+Nota 2: Ativar -> Docker Cli Win > Settings > General > Expose daemon on tcp://localhost:2375 without TLS 
+
+Necessário para que o Maven consiga gerar a imagem no docker.
+```
+mvn clean package docker:build
+```
+Executar container da aplicação
+```
+docker run --name api-localidades -it -p 8080:8080 antoniny/api-localidades:latest
+```
 .
 
 
