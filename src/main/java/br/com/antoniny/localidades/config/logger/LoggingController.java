@@ -17,6 +17,6 @@ public class LoggingController {
         logger.warn("A WARN Message");
         logger.error("An ERROR Message");
 
-        return "API Localidades. Consulte a documentação Swagger";
+        return "API Localidades. Consulte a documentação Swagger em .../swagger-ui.html#/";
     }
 }

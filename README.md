@@ -47,7 +47,7 @@ Seguem abaixo as API's do projeto:
     
     exemplo:
     ```
-    λ curl http://localhost:8080/api/v1/localidades
+    λ curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/v1/localidades'
     [
         {
             "idEstado": 11,
@@ -157,10 +157,27 @@ mvn spring-boot:run
 ```
 
 A api já deverá estar disponível em 
->http://localhost:8080/ \
+>http://localhost:8080/
 
->Swagger: http://localhost:8080/swagger-ui.html \
+
+Swagger: http://localhost:8080/swagger-ui.html#/
+```
+Localidades : Obtem informações de localidadesShow/HideList OperationsExpand Operations
+
+ GET /api/v1/localidades
+ Obtém os municípios cadastros no IBGE no formato JSON.
  
+ GET /api/v1/localidades/cidades/id
+ Obtém o(s) código(s) ibge(id) do(s) município(s) através do nome do município.
+ 
+ GET /api/v1/localidades/csv
+ Obtém os municípios cadastros no IBGE no formato CSV.
+ 
+ [ base url: / , api version: 1.0.0 ]
+```
+
+.
+
 
 
    
