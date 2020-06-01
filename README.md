@@ -1,7 +1,8 @@
-#API - Localidades
+API - Localidades
 
 Projeto criado para realização de um desafio. Disponibiliza três url's de api para extração e consulta de dados referente a estados e municípios. 
 Através das urls publicadas as consultas serão realizadas em api externa publica do IBGE e retornado os dados transformados em Json/CSV. 
+
 ## Visão geral
 
 O projeto é uma aplicação back-end java com objetivo de demonstrar a construção de uma API utilizando os frameworks [Spring Boot](https://projects.spring.io/spring-boot), [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) e [Spring Web](https://spring.io/projects/spring-ws) em conjunto.
