@@ -17,13 +17,13 @@ import java.util.List;
 public class MunicipioService implements MunicipioServiceInterface {
 
     @Autowired
-    MunicipioIntegration municipioIntegration;
+    private MunicipioIntegration municipioIntegration;
 
     @Autowired
-    EstadoService estadoService;
+    private EstadoService estadoService;
 
     @Autowired
-    MunicipioServiceCacheable municipioServiceCacheable;
+    private MunicipioServiceCacheable municipioServiceCacheable;
 
     @Override
     public List<MunicipioDto> getMunicipiosUf(String uf) {

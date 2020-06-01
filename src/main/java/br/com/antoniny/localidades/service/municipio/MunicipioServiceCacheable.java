@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class MunicipioServiceCacheable {
 
     @Autowired
-    MunicipioService municipioService;
+    private MunicipioService municipioService;
 
     @Cacheable("nomeMunicipio")
     public ResponseEntity<List<MunicipioIdResponseDto>> findByName (String nomeMunicipio) {

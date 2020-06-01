@@ -11,7 +11,7 @@ import java.util.List;
 public class EstadoService implements EstadoServiceInterface{
 
     @Autowired
-    EstadoIntegration estadoIntegration;
+    private EstadoIntegration estadoIntegration;
 
 
     @Override

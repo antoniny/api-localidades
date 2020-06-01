@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class LocalidadeServiceJson implements LocalidadeServiceJsonInterface {
 
     @Autowired
-    LocalidadeService localidadeService;
+    private LocalidadeService localidadeService;
 
     @Override
     public ResponseEntity<List<LocalidadeResponseJsonDto>> getAllLocalidadesJson() {

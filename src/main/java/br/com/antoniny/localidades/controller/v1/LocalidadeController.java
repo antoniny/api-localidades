@@ -27,13 +27,13 @@ import java.util.List;
 public class LocalidadeController  {
 
     @Autowired
-    LocalidadeServiceJson localidadeJsonService;
+    private LocalidadeServiceJson localidadeJsonService;
 
     @Autowired
-    LocalidadeServiceCsv localidadeCsvService;
+    private LocalidadeServiceCsv localidadeCsvService;
 
     @Autowired
-    MunicipioService municipioService;
+    private MunicipioService municipioService;
 
     @Value("${api.v1.localidades.csv.attachment}")
     private String fileAttachmentCSV;

@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public class LocalidadeServiceCsv implements LocalidadeServiceCsvInterface {
 
     @Autowired
-    LocalidadeService localidadeService;
+    private LocalidadeService localidadeService;
 
     @Autowired
-    ConvertResponseDtoToCsv convertResponseDtoToCsv;
+    private ConvertResponseDtoToCsv convertResponseDtoToCsv;
 
     @Value("${config.csv.field.separator}")
     private String fieldSeparator;

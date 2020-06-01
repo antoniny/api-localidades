@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 public class LocalidadeService implements LocalidadeServiceInterface {
 
     @Autowired
-    EstadoService estadoService;
+    private EstadoService estadoService;
 
     @Autowired
-    MunicipioService municipioService;
+    private MunicipioService municipioService;
 
     @Override
     public List<LocalidadeResponseDto> getAllLocalidades() {
