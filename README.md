@@ -176,6 +176,64 @@ Localidades : Obtem informações de localidadesShow/HideList OperationsExpand O
  [ base url: / , api version: 1.0.0 ]
 ```
 
+#DockerHub
+
+[Repositorio DockerHub](https://hub.docker.com/r/antoniny/api-localidades) -> Acesso ao repositório do projeto no DockerHub
+
+
+##### Executar servidor via Docker Client - pull image
+
+Pré-requisito
+```
+Doker Client instalado e em execução
+```
+[Get Docker]((https://docs.docker.com/get-docker/))
+
+Comandos para iniciar o servidor
+```
+##1 - Realiza o download e inicia o servidor em http://localhost:8080/swagger-ui.html
+
+docker run --name api-localidades -it -p 8080:8080 antoniny/api-localidades:latest
+
+##Nota: Caso não deseja a exibição de logs do servidor em seu terminal, execute o comando abaixo ( -d
+docker run --name api-localidades -itd -p 8080:8080 antoniny/api-localidades:latest
+
+##2 - Stop servidor
+
+docker stop api-localidades
+
+##3 - Listar imagens
+
+docker images
+
+##4 - Listar container ativos
+
+docker container ls
+
+##4 - Deletar container / image
+
+ docker rm api-localidades
+ docker rmi -f antoniny/api-localidades
+```
+
+###Instalação da aplicação via build/compilação
+
+Baixar as dependência e criar imagem da aplicação
+
+Considerando sistema operacional windows com docker cli instalado.
+
+Nota 1: Docker Cli deve estar ativo (Container Linux) 
+
+Nota 2: Ativar -> Docker Cli Win > Settings > General > Expose daemon on tcp://localhost:2375 without TLS 
+
+Necessário para que o Maven consiga gerar a imagem no docker.
+```
+mvn clean package docker:build
+```
+Executar container da aplicação
+```
+docker run --name api-localidades -it -p 8080:8080 antoniny/api-localidades:latest
+```
 .
 
 
