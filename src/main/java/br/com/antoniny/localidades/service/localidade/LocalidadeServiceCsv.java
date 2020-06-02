@@ -19,6 +19,9 @@ public class LocalidadeServiceCsv implements LocalidadeServiceCsvInterface {
     private LocalidadeService localidadeService;
 
     @Autowired
+    private LocalidadeV2Service localidadeV2Service;
+
+    @Autowired
     private ConvertResponseDtoToCsv convertResponseDtoToCsv;
 
     @Value("${config.csv.field.separator}")
@@ -53,5 +56,18 @@ public class LocalidadeServiceCsv implements LocalidadeServiceCsvInterface {
                         : localidadeCsvFields + lineSeparator
                 );
 
+    }
+
+    @Override
+    public String getAllLocalidadesCSVV2() {
+        List<LocalidadeResponseCsvDto> localidades = new ArrayList<>();
+        localidades.addAll(localidadeV2Service.getAllLocalidades().stream().map(LocalidadeResponseCsvDto::new).collect(Collectors.toList()));
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(getNameFieldsDto(new LocalidadeResponseCsvDto()));
+
+        localidades.forEach(dto -> stringBuffer.append(convertResponseDtoToCsv.toCsv(dto)));
+
+        return  stringBuffer.toString();
     }
 }

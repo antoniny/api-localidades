@@ -18,11 +18,25 @@ public class LocalidadeServiceJson implements LocalidadeServiceJsonInterface {
     @Autowired
     private LocalidadeService localidadeService;
 
+    @Autowired
+    private LocalidadeV2Service localidadeV2Service;
+
     @Override
     public ResponseEntity<List<LocalidadeResponseJsonDto>> getAllLocalidadesJson() {
 
         List<LocalidadeResponseJsonDto> localidades = new ArrayList<>();
         localidades.addAll(localidadeService.getAllLocalidades().stream().map(LocalidadeResponseJsonDto::new).collect(Collectors.toList()));
+
+        return (localidades == null)
+                ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonList(new LocalidadeResponseJsonDto()))
+                : ResponseEntity.ok().body(localidades) ;
+    }
+
+    @Override
+    public ResponseEntity<List<LocalidadeResponseJsonDto>> getAllLocalidadesJsonV2() {
+
+        List<LocalidadeResponseJsonDto> localidades = new ArrayList<>();
+        localidades.addAll(localidadeV2Service.getAllLocalidades().stream().map(LocalidadeResponseJsonDto::new).collect(Collectors.toList()));
 
         return (localidades == null)
                 ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonList(new LocalidadeResponseJsonDto()))

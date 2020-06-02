@@ -7,4 +7,6 @@ public interface LocalidadeServiceCsvInterface {
     String getAllLocalidadesCSV();
 
     String getNameFieldsDto(LocalidadeResponseCsvDto localidadeCsv);
+
+    String getAllLocalidadesCSVV2();
 }

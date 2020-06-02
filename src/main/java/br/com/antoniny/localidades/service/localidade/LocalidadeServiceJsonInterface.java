@@ -8,4 +8,6 @@ import java.util.List;
 public interface LocalidadeServiceJsonInterface {
 
     ResponseEntity<List<LocalidadeResponseJsonDto>> getAllLocalidadesJson();
+
+    ResponseEntity<List<LocalidadeResponseJsonDto>> getAllLocalidadesJsonV2();
 }

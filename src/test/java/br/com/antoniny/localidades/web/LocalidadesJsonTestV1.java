@@ -4,7 +4,7 @@ package br.com.antoniny.localidades.web;
 import br.com.antoniny.localidades.controller.v1.LocalidadeController;
 import br.com.antoniny.localidades.service.localidade.LocalidadeServiceCsv;
 import br.com.antoniny.localidades.service.localidade.LocalidadeServiceJson;
-import br.com.antoniny.localidades.service.municipio.MunicipioService;
+import br.com.antoniny.localidades.service.municipio.v1.MunicipioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

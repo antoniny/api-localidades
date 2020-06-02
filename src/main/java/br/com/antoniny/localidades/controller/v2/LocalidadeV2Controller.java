@@ -1,10 +1,10 @@
-package br.com.antoniny.localidades.controller.v1;
+package br.com.antoniny.localidades.controller.v2;
 
 import br.com.antoniny.localidades.service.dto.LocalidadeResponseJsonDto;
 import br.com.antoniny.localidades.service.dto.MunicipioIdResponseDto;
 import br.com.antoniny.localidades.service.localidade.LocalidadeServiceCsv;
 import br.com.antoniny.localidades.service.localidade.LocalidadeServiceJson;
-import br.com.antoniny.localidades.service.municipio.v1.MunicipioService;
+import br.com.antoniny.localidades.service.municipio.v2.MunicipioV2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,22 +14,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/")
-@Api(value = "Localidade", tags = {"Localidades"},description = "Obtem informações de localidades")
-public class LocalidadeController  {
+@RequestMapping("/api/v2/")
+@Api(value = "LocalidadeV2", tags = {"Localidades"},description = "Obtem informações de localidades")
+public class LocalidadeV2Controller {
 
     @Autowired
     private LocalidadeServiceJson localidadeJsonService;
@@ -38,7 +33,7 @@ public class LocalidadeController  {
     private LocalidadeServiceCsv localidadeCsvService;
 
     @Autowired
-    private MunicipioService municipioService;
+    private MunicipioV2Service municipioV2Service;
 
     @Value("${api.v1.localidades.csv.attachment}")
     private String fileAttachmentCSV;
@@ -63,7 +58,7 @@ public class LocalidadeController  {
         response.setContentType("application/json;charset="+charset);
         response.setHeader("Content-Disposition", "attachment; filename="+fileAttachmentJson);
 
-        return localidadeJsonService.getAllLocalidadesJson();
+        return localidadeJsonService.getAllLocalidadesJsonV2();
     }
 
 
@@ -80,7 +75,7 @@ public class LocalidadeController  {
         response.setContentType("application/vnd.ms-excel;charset="+charset);
         response.setHeader("Content-Disposition", "attachment; filename="+fileAttachmentCSV);
 
-        String csv = localidadeCsvService.getAllLocalidadesCSV();
+        String csv = localidadeCsvService.getAllLocalidadesCSVV2();
 
         OutputStream outputStream = response.getOutputStream();
         outputStream.write(0xEF);   // 1st byte of BOM
@@ -110,6 +105,6 @@ public class LocalidadeController  {
     @GetMapping(value = "localidades/cidades/id" ,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<MunicipioIdResponseDto>> getIdCidade(@RequestParam String nomeCidade){
 
-        return municipioService.findIdMunicipioByName(nomeCidade.toUpperCase());
+        return municipioV2Service.findIdMunicipioByName(nomeCidade.toUpperCase());
     }
 }

@@ -1,6 +1,7 @@
 package br.com.antoniny.localidades.config.exception;
 
 import br.com.antoniny.localidades.config.exception.dto.ExceptionHandlerResponseDTO;
+import feign.FeignException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,18 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     }
 
+
+    @ExceptionHandler({ FeignException.class })
+    public ResponseEntity<ExceptionHandlerResponseDTO> handleFeignException(IllegalStateException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        String mensagem = "Ocorreu uma falha no processamento de sua requisição.";
+        String erro = "["+ex.getClass()+"] "+ ex.getMessage();
+
+        ExceptionHandlerResponseDTO handlerResponseDTO = new ExceptionHandlerResponseDTO(HttpStatus.BAD_REQUEST, mensagem , erro);
+
+        return new ResponseEntity(handlerResponseDTO , HttpStatus.BAD_REQUEST);
+
+    }
 
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
